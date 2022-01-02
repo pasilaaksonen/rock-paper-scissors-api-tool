@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
+import Header from './components/Header';
+import LiveGames from './components/LiveGames';
+import UserCardContainer from './components/UserCardContainer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
 import historyServices from './services/history';
 
 function App() {
-
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    historyServices.getData().then((response) => {
-      setData(response.data)
-    })
-  }, [])
 
   const handleHistoryCall = () => {
     historyServices.history().then(response => {
@@ -17,17 +13,24 @@ function App() {
     })
   }
 
-  const handleUpdateData = () => {
-    historyServices.updateHistory().then(response => {
-      console.log("update data")
-    })
-  }
+  // const handleUpdateData = () => {
+  //   historyServices.updateHistory().then(response => {
+  //     console.log("update data")
+  //   })
+  // }
+
+  /* <button onClick={handleHistoryCall}>Make a history call</button>
+      <button onClick={handleUpdateData}>Update data</button> */ 
 
   return (
-    <div className="App">
-      <button onClick={handleHistoryCall}>Make a history call</button>
-      <button onClick={handleUpdateData}>Update data</button>
-    </div>
+    <Router>
+      <Header />
+      {/* <button onClick={handleHistoryCall}>Make a history call</button> */}
+      <Switch>
+        <Route path='/' exact render={() => <LiveGames />} />
+        <Route path='/history' exact render={() => <UserCardContainer /> } />
+      </Switch>
+    </Router>
   );
 }
 export default App;

@@ -7,6 +7,7 @@ import config from './utils/config.js'
 const app = express();
 app.use(cors());
 
+app.use(express.static('build'));
 app.use('/api', postRoutes);
 
 mongoose

@@ -2,7 +2,7 @@ import logo from '../logo.svg';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Nav, Navbar } from 'react-bootstrap'
 
-function Header() {
+function Header({ setPage }) {
     return (
         <div className="App">
             <Navbar bg="dark" variant="dark">
@@ -11,8 +11,8 @@ function Header() {
                 Rock paper scissors app
             </Navbar.Brand>
             <Nav>
-                <Nav.Link href="/">Live games</Nav.Link>
-                <Nav.Link href="/history">Player history</Nav.Link>
+                <Nav.Link onClick={() => setPage("LiveGames")}>Live games</Nav.Link>
+                <Nav.Link onClick={() => setPage("PlayerHistory")}>Player history</Nav.Link>
             </Nav>
             </Navbar>
         </div>

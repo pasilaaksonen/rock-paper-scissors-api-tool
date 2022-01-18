@@ -1,17 +1,19 @@
+import React, { useState } from 'react'
 import Header from './components/Header';
 import LiveGames from './components/LiveGames';
 import UserCardContainer from './components/UserCardContainer';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import historyServices from './services/history';
+// import historyServices from './services/history';
 
 function App() {
 
-  const handleHistoryCall = () => {
-    historyServices.history().then(response => {
-      console.log(response)
-    })
-  }
+  const [ page, setPage ] = useState("LiveGames")
+
+  // const handleHistoryCall = () => {
+  //   historyServices.history().then(response => {
+  //     console.log(response)
+  //   })
+  // }
 
   // const handleUpdateData = () => {
   //   historyServices.updateHistory().then(response => {
@@ -23,14 +25,12 @@ function App() {
       <button onClick={handleUpdateData}>Update data</button> */ 
 
   return (
-    <Router>
-      <Header />
-      {/* <button onClick={handleHistoryCall}>Make a history call</button> */}
-      <Switch>
-        <Route path='/' exact render={() => <LiveGames />} />
-        <Route path='/history' exact render={() => <UserCardContainer /> } />
-      </Switch>
-    </Router>
+    <>
+      <Header setPage={setPage} />
+      {/* <button onClick={handleHistoryCall}>Make a history call</button> */} 
+      {page === "LiveGames" && <LiveGames /> }
+      {page === "PlayerHistory" && <UserCardContainer /> }
+    </>
   );
 }
 export default App;

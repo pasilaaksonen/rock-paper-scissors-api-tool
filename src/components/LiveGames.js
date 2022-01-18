@@ -55,7 +55,7 @@ function LiveGames() {
 
     return (
         <div className="page-content">
-            <h1>Games in progress</h1>
+            <h1>New upcoming games</h1>
             <div className="cards-container">
                 {startingGamesList.map(game => (
                     <LiveStartGameCard 
